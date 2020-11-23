@@ -1,0 +1,33 @@
+{
+  "name": "task1",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "build:styles": "sass ./src/styles/index.scss ./dist/styles.css",
+    "copy:html": "cp ./src/index.html ./dist/index.html",
+    "copy:scripts": "cp -R ./src/scripts ./dist/scripts",
+    "clean": "rm -rf ./dist",
+    "build": "npm-run-all clean build:styles copy:*",
+    "build:scripts": "babel ./src/scripts --out-dir=./dist/scripts",
+    "build:babel": "npm-run-all clean build:styles copy:scripts babel:scripts",
+    "webpack:dev": "webpack ./src/scripts/index.js --mode=development",
+    "webpack:prod": "webpack ./src/scripts/index.js --mode=production",
+    "webpack:p": "webpack ./src/scripts/index.js --mode=production --devtool eval"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/cli": "^7.12.7",
+    "@babel/core": "^7.12.7",
+    "@babel/preset-env": "^7.12.1",
+    "jest": "^26.6.3",
+    "npm-run-all": "^4.1.5",
+    "sass": "^1.29.0",
+    "webpack": "^5.6.0",
+    "webpack-cli": "^4.2.0"
+  }
+}
