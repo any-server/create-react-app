@@ -2,22 +2,37 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 
-
-
-// ReactDOM.render(
-//   <React.StrictMode>
-//     <App />
-//   </React.StrictMode>,
-//   document.getElementById('root')
-// );
-
 const rootElement = document.querySelector('#root');
 
-const element = (
-  <div className="greeting">
-      <div className="greeting__title">Hello, World!</div>
-      <div className="greeting__text">I'm learning React</div>
-  </div>
-);
+const renderSeconds = time => {
+  const seconds = new Date(time).getSeconds();
+  const backgroundColor = seconds % 2 === 0
+    ? '#fff'
+    : '#000';
 
-ReactDOM.render(element, rootElement);
+  const textColor = seconds % 2 !== 0
+    ? '#fff'
+    : '#000';  
+
+  const styles = {
+    color: textColor,
+    backgroundColor
+  }
+
+
+  const element = (
+    <div
+      className="seconds"
+      style={styles}
+    >
+        <div>{seconds}</div>
+    </div>
+  );
+
+  ReactDOM.render(element, rootElement);
+}
+
+renderSeconds(new Date());
+
+setInterval(() => renderSeconds(new Date()), 1000);
+
